@@ -11,6 +11,6 @@ public class Application {
         String input = Console.readLine();
 
         InputParser inputParser = new InputParser();
-        List<Integer> numbers = inputParser.createWinningNumber(input);
+        List<Integer> numbers = inputParser.parseWinningNumber(input);
     }
 }
