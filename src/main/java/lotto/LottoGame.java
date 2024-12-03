@@ -6,10 +6,12 @@ import java.util.List;
 public class LottoGame {
 
     private List<Lotto> lottos;
-    int amount;
-    int lottoCount;
+    private int amount;
+    private int lottoCount;
+    private WinningNumber winningNumber;
+    private int result[] = new int[5];
 
-    public LottoGame(int amount) {
+    public LottoGame(int amount, WinningNumber winningNumber) {
         this.amount = amount;
         this.lottoCount = amount / 1000;
         lottos = new ArrayList<>();
@@ -19,6 +21,7 @@ public class LottoGame {
             Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
         }
+        this.winningNumber = winningNumber;
     }
 
     public void printPurchaseLottos() {
@@ -26,5 +29,35 @@ public class LottoGame {
         for(Lotto lotto : lottos) {
             lotto.printLotto();
         }
+        System.out.println();
+    }
+
+    public void calcResult() {
+        for(Lotto lotto : lottos) {
+            int matchNumber = lotto.countMatchingNumbers(winningNumber.getWinningNumbers());
+            boolean hasBonus = lotto.hasBonus(winningNumber.getBonusNumber());
+            LottoMatch lottoMatch = LottoMatch.getRank(matchNumber, hasBonus);
+
+            if (lottoMatch != null) {
+                result[lottoMatch.ordinal()]++;
+            }
+        }
+    }
+
+    public void printLottoStatics() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        int index = 0;
+        for (LottoMatch lottoMatch : LottoMatch.values()) {
+            StringBuilder result = new StringBuilder();
+            result.append(lottoMatch.getMatchNumber() + "개 일치");
+            if (lottoMatch.HasBonus()) {
+                result.append(", 보너스 볼 일치");
+            }
+            result.append(" (" + String.format("%,d", lottoMatch.getPrize()) + "원) - " + this.result[index++] + "개");
+            System.out.println(result);
+        }
+        System.out.println();
     }
 }

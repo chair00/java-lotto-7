@@ -37,4 +37,20 @@ public class Lotto {
         Collections.sort(sortNumbers);
         System.out.println(sortNumbers.toString());
     }
+
+    public int countMatchingNumbers(List<Integer> winningNumbers) {
+
+        int matchNumber = 0;
+        for(int winningNumber : winningNumbers) {
+            if(numbers.contains(winningNumber)) {
+                matchNumber++;
+            }
+        }
+        return matchNumber;
+    }
+
+    public boolean hasBonus(int bonusNumber) {
+
+        return numbers.contains(bonusNumber);
+    }
 }

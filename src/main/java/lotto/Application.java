@@ -14,7 +14,6 @@ public class Application {
         String input = Console.readLine();
 
         int amount = inputParser.parseAmount(input);
-        LottoGame lottoGame = new LottoGame(amount);
 
         System.out.println("당첨 번호를 입력해주세요.");
         input = Console.readLine();
@@ -28,6 +27,10 @@ public class Application {
         int bonusNumber = inputParser.parseBonusNumber(input);
         winningNumber.setBonusNumber(bonusNumber);
 
+        LottoGame lottoGame = new LottoGame(amount, winningNumber);
         lottoGame.printPurchaseLottos();
+
+        lottoGame.calcResult();
+        lottoGame.printLottoStatics();
     }
 }
