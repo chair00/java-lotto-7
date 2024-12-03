@@ -21,7 +21,7 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @DisplayName("로또 번호에 범위를 벗어난 숫자가 있으면 예외가 발생한다.")
     @Test
     void 로또_번호에_범위를_벗어난_숫자가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 55)))
