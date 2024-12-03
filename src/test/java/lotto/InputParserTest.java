@@ -13,7 +13,7 @@ class InputParserTest {
 
         InputParser inputParser = new InputParser();
         String input = "1, 2, 3, 4, , 5, 6";
-        assertThatThrownBy(() -> inputParser.parseWinningNumber(input))
+        assertThatThrownBy(() -> inputParser.parseWinningNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -23,7 +23,7 @@ class InputParserTest {
 
         InputParser inputParser = new InputParser();
         String input = "";
-        assertThatThrownBy(() -> inputParser.parseWinningNumber(input))
+        assertThatThrownBy(() -> inputParser.parseWinningNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -33,7 +33,7 @@ class InputParserTest {
 
         InputParser inputParser = new InputParser();
         String input = "l,4";
-        assertThatThrownBy(() -> inputParser.parseWinningNumber(input))
+        assertThatThrownBy(() -> inputParser.parseWinningNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

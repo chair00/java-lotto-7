@@ -8,29 +8,14 @@ public class Application {
     public static void main(String[] args) {
 
         InputParser inputParser = new InputParser();
-        WinningNumber winningNumber = new WinningNumber();
+        InputView inputView = new InputView(inputParser);
 
-        System.out.println("구입 금액을 입력해주세요.");
-        String input = Console.readLine();
-
-        int amount = inputParser.parseAmount(input);
-
-        System.out.println("당첨 번호를 입력해주세요.");
-        input = Console.readLine();
-
-        List<Integer> winningNumbers = inputParser.parseWinningNumber(input);
-        winningNumber.setWinningNumbers(winningNumbers);
-
-        System.out.println("보너스 번호를 입력해주세요.");
-        input = Console.readLine();
-
-        int bonusNumber = inputParser.parseBonusNumber(input);
-        winningNumber.setBonusNumber(bonusNumber);
+        int amount = inputView.inputAmount();
+        WinningNumber winningNumber = inputView.inputWinningNumber();
 
         LottoGame lottoGame = new LottoGame(amount, winningNumber);
         lottoGame.printPurchaseLottos();
 
-        lottoGame.calcResult();
         lottoGame.printLottoStatics();
     }
 }

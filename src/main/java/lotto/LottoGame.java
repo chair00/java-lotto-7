@@ -45,6 +45,8 @@ public class LottoGame {
     }
 
     public void printLottoStatics() {
+        calcResult();
+
         System.out.println("당첨 통계");
         System.out.println("---");
 
@@ -58,6 +60,18 @@ public class LottoGame {
             result.append(" (" + String.format("%,d", lottoMatch.getPrize()) + "원) - " + this.result[index++] + "개");
             System.out.println(result);
         }
+        System.out.println("총 수익률은 " + calcRateOfReturn() + "%입니다.");
         System.out.println();
+    }
+
+    public double calcRateOfReturn() {
+        int netProfit = 0;
+
+        int index = 0;
+        for (LottoMatch lottoMatch : LottoMatch.values()) {
+            netProfit += lottoMatch.getPrize() * result[index++];
+        }
+        double rateOfReturn = (double) netProfit / amount * 100;
+        return Math.round(rateOfReturn * 100) / 100.0;
     }
 }

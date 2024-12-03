@@ -23,7 +23,7 @@ public class InputParser {
     }
 
     // 당첨 번호 입력
-    public List<Integer> parseWinningNumber(String input) {
+    public List<Integer> parseWinningNumbers(String input) {
         try {
             List<Integer> numbers = Arrays.stream(input.split(","))
                     .map(String::trim)
